@@ -1,53 +1,66 @@
 import random
-import collections
 from collections import Counter
 
+
 class GameLogic:
-    def __init__(self, roll, calculate):
-        self.head = None
-        self.roll = roll
 
     @staticmethod
-    def roll_dice(roll):
-        # if roll == None:
-        #     roll = roll
-        if roll == 0:
-            return()
-        dice_roll = tuple(random.randint(1, 6) for i in range(roll))
-        return dice_roll
-
-# create variable to handle argument passed into method
-
-    @staticmethod
-    def calculate_score(dice):
-        count = Counter(dice)
-        if len(count) == 6:
-            return 1500
-        if len(count) == 3 and all(val == 2 for val in count.values()):
-            return 1500
-
+    def calculate_score(roll_dice):
+        # game_start = ()
+        count = Counter(roll_dice)
+        print(count)
         score = 0
+        length_of_counter = len(count)
 
-        dice_used = five_used = False
+        if count[5] == 1 or count[5] == 2:
+            score += 50 * count[5]
 
-        for num in range(1, 6 + 1):
-            number_count = count[num]
-            if number_count >= 3:
-                if num == 1:
-                    dice_used = True
-                elif num == 5:
-                    five_used = True
-                    score += num * 100
-                    egg = number_count - 3
-                    score += score * egg
+        if count[1] == 1 or count[1] == 2:
+            score += 100 * count[1]
 
+        for i in range(1, 7):
+            if i == 1 and count[1] == 3:
+                score += 1000
+            elif i != 1 and count[i] == 3:
+                score += i * 100
+
+        for i in range(1, 7):
+            if i == 1 and count[1] == 4:
+                score += 2000
+            elif i != 1 and count[i] == 4:
+                score += i * 200
+
+        for i in range(1, 7):
+            if i == 1 and count[1] == 5:
+                score += 3000
+            elif i != 1 and count[i] == 5:
+                score += i * 300
+
+        for i in range(1, 7):
+            if i == 1 and count[1] == 6:
+                score += 4000
+            elif i != 1 and count[i] == 6:
+                score += i * 400
+
+        for i in range(1, 7):
+            if length_of_counter == 6 and count[i] == 1:
+                score = 1500
+
+        tally_three_pair = 0
+        for i in range(1, 7):
+
+            if count[i] == 2:
+                tally_three_pair += 1
+            if tally_three_pair == 3:
+                score = 1500
 
         return score
 
-
-
-
-
-
+        @staticmethod
+        def roll_dice(rolled_dice):
+            dice_list = []
+            for _ in range(rolled_dice):
+                dice_list.append(random.randint(1, 6))
+            return tuple(dice_list)
 
 
