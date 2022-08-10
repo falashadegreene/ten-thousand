@@ -9,4 +9,9 @@
 ## Run main script
 - virtual environment: python ten_thousand/game_logic.py
 
+## collaborators
+- Brandon Mizutani
+
+
+
 

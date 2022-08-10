@@ -6,7 +6,7 @@ class GameLogic:
 
     @staticmethod
     def calculate_score(roll_dice):
-        # game_start = ()
+
         count = Counter(roll_dice)
         print(count)
         score = 0
