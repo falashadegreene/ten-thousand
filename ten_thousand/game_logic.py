@@ -2,7 +2,9 @@ import random
 from collections import Counter
 
 
+# noinspection PyUnreachableCode
 class GameLogic:
+
 
     @staticmethod
     def calculate_score(roll_dice):
